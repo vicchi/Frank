@@ -1435,8 +1435,11 @@ button, .button, input[type=submit] {
 .post-content {
   font: 17px/1.6 Georgia, serif;
 }
-.post-content p, .post-content ul li, .post-content ol li, .post-content dt, .post-content dd, .post-content blockquote {
+.post-content p, .post-content li, .post-content dt, .post-content dd, .post-content blockquote {
   font-size: 17px;
+}
+.post-content li {
+  margin: 10px 0;
 }
 .post-content code, .post-content small {
   font-size: 13px;
