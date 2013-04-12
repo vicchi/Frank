@@ -9,7 +9,7 @@ License:				GPL 3.0
 License URI:		http://www.gnu.org/copyleft/gpl.html 
 Tags: 					brown, red, white, two-columns, fixed-width, sticky-post, custom-menu
 */
-.metadata, .metadata li, .wp-caption img, .menu li, #comments .comment {
+.metadata, .metadata li, .wp-caption img, .menu-item, .sub-menu, #comments .comment {
   margin: 0;
   padding: 0;
 }
@@ -24,17 +24,9 @@ Tags: 					brown, red, white, two-columns, fixed-width, sticky-post, custom-menu
   box-shadow: 0px 0px 8px rgba(18, 7, 6, 0.3);
 }
 
-.bypostauthor {
-  border: 2px solid #5d504f;
-  border-left: 0;
-  border-right: 0;
-  padding: 15px 0;
-}
-
-blockquote, pre {
+blockquote, pre, .bypostauthor {
   border: 2px solid #050000;
-  border-left: 0;
-  border-right: 0;
+  border-width: 2px 0;
   padding: 15px 0;
 }
 
@@ -733,28 +725,22 @@ img, video {
 	-------------------------------------------------- */
 /* Mobile */
 @media only screen and (max-width: 767px) {
+  body, .container, .row {
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   body {
     -webkit-text-size-adjust: none;
     -ms-text-size-adjust: none;
     width: 100%;
-    min-width: 0;
-    margin-left: 0;
-    margin-right: 0;
     padding-left: 0;
     padding-right: 0;
   }
 
-  .container {
-    min-width: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   .row {
     width: 100%;
-    min-width: 0;
-    margin-left: 0;
-    margin-right: 0;
   }
 
   .row .row .column, .row .row #content-primary, .row .row .post.leftaside .post-content, .post.leftaside .row .row .post-content, .row .row .type-page.leftaside .post-content, .type-page.leftaside .row .row .post-content, .row .row .post.leftaside .post-info, .post.leftaside .row .row .post-info, .row .row .type-page.leftaside .post-info, .type-page.leftaside .row .row .post-info, .row .row .post-group.twoup .post, .post-group.twoup .row .row .post, .row .row .post-group.threeup .post, .post-group.threeup .row .row .post, .row .row .post-group.fourup .post, .post-group.fourup .row .row .post, .row .row #sidebar, .row .row #comment-form-logged-in-as, .row .row #comment-form-info, .row .row #comment-form-content, .row .row .comment-content, .row .row .comment-info, .row .row #comment-form-allowed-tags, .row .row .columns {
@@ -1259,6 +1245,10 @@ pre {
   content: "Sticky: ";
 }
 
+.bypostauthor {
+  border-color: #5d504f;
+}
+
 .widget {
   font-size: 11px;
   margin-bottom: 15px;
@@ -1331,91 +1321,72 @@ button, .button, input[type=submit] {
 }
 
 #site-nav {
-  margin: 15px auto 30px auto;
+  margin: 15px 0 30px 0;
   border-bottom: 2px solid #f0eceb;
 }
 
-.menu ul {
-  margin: 0 0 15px 0;
+.menu, .sub-menu {
   list-style: none;
 }
-.menu ul ul {
-  list-style: none;
+
+.menu {
+  margin: 0 0 15px 0;
+}
+
+.menu > .menu-item:hover {
+  border-top: 1px solid #5d504f;
+  margin-top: -1px;
+}
+
+.menu > .menu-item > .sub-menu {
   position: absolute;
   z-index: 999;
   margin: 0;
   left: -9999px;
-}
-.menu ul ul li {
-  float: none;
-  margin: 0;
-  border-bottom: 1px solid #fffefe;
-}
-.menu ul ul li:first-child {
-  margin-top: 10px;
-}
-.menu ul ul li:last-child {
-  border-bottom: 0;
-  margin-bottom: 10px;
-}
-.menu ul ul a {
-  padding: 5px 10px;
-  white-space: nowrap;
-}
-.menu ul ul ul {
-  position: relative;
-  margin-top: 0;
-}
-.menu ul ul ul li:first-child {
-  margin-top: 0;
-}
-.menu ul ul ul li:last-child {
-  margin-bottom: 0;
-}
-.menu ul ul ul a {
-  padding: 7px 30px;
-}
-.menu li {
-  margin: 0 10px 0 0;
-  float: left;
-  position: relative;
-}
-.menu li:hover {
-  border-top: 1px solid #5d504f;
-  margin-top: -1px;
-}
-.menu li:hover ul {
-  left: 0;
   border-top: 2px solid #3d302f;
   border-bottom: 1px solid #5d504f;
   background: #f7f4f4;
+  padding-bottom: 10px;
 }
-.menu li:hover ul a {
-  font-weight: 400;
-  padding: 7px 30px 7px 10px;
-  white-space: nowrap;
+
+.menu > .menu-item {
+  margin-right: 10px;
+  float: left;
 }
-.menu li:hover ul a:hover {
-  background: #e5dedc;
-}
-.menu li:hover ul ul {
-  border: 0;
-}
-.menu li:hover ul ul a {
-  padding: 7px 30px 7px 15px;
-}
-.menu li:hover li {
-  margin-top: 0;
-  border: none;
-}
-.menu a {
+.menu > .menu-item > a {
   padding: 15px 10px;
+}
+
+.menu-item {
+  position: relative;
+}
+.menu-item a {
+  padding: 7px 30px 7px 10px;
   display: block;
   color: #050000;
   font: 700 11px Sans-Serif;
 }
-.menu a:hover {
+.menu-item a:hover {
   color: #5d504f;
+}
+
+.menu-item:hover > .sub-menu {
+  left: 0;
+}
+
+.sub-menu .menu-item:first-child {
+  margin-top: 10px;
+}
+.sub-menu > .menu-item a {
+  padding-left: 15px;
+}
+.sub-menu a {
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sub-menu a:hover {
+  background: #e5dedc;
+  border: 0;
 }
 
 #page-header {
