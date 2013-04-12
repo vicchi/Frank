@@ -1589,8 +1589,8 @@ button, .button, input[type=submit] {
   width: 45px;
   height: 45px;
   border-radius: 22.5px;
-  /*TODO: Use compass to create data URI*/
-  background: #5d504f url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAQCAYAAADESFVDAAAAWElEQVR42qXSzQkAIAgF4EZolEZqhDZqpEZwBM8dovSUYD9YwuNdPgIlt5tWa6AA9wkgpXPfACeagaeAAGkFigDZACbKAoAC+5f+od7Oesh/iC+/QC/DPQAIxvkuqJQtLgAAAABJRU5ErkJggg==") no-repeat 16px 15px;
+  background: #5d504f url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwcHgiIGhlaWdodD0iNDcuMzAxcHgiIHZpZXdCb3g9IjAgMCAzMCA0Ny4zMDEiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIyMy42NSw0Ny4zMDEgMCwyMy42NTEgMjMuNjUsMCAzMCw2LjM1IDEyLjY5OSwyMy42NTEgMzAsNDAuOTUxICIvPg0KPC9zdmc+DQo=') no-repeat 47% 50%;
+  background-size: 33%;
 }
 
 /* TODO: Remove heirarchy & general cleanup */
