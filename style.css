@@ -1563,10 +1563,8 @@ button, .button, input[type=submit] {
 }
 
 #prev-post {
-  margin-top: 60px;
-  margin-bottom: 30px;
-  font-style: italic;
-  font-family: Georgia, serif;
+  margin: 60px 0 30px;
+  font: italic 1em Georgia, serif;
 }
 #prev-post a {
   font-size: 13px;
