@@ -66,23 +66,7 @@
 		</a>
 		<?php endif; ?>
 
-<<<<<<< HEAD:header.php
 		<nav id="site-nav">
-=======
-		<?php
-				if ( 'blank' == get_header_textcolor() ) :
-			?>
-				<div class="only-search<?php if ( $header_image ) : ?> with-image<?php endif; ?>">
-				<?php get_search_form(); ?>
-				</div>
-			<?php
-				else :
-			?>
-				<?php get_search_form(); ?>
-			<?php endif; ?>
-
-		<nav id="site-nav" role="navigation">
->>>>>>> refs/heads/local-customisation:frank/header.php
 			<?php if ( !dynamic_sidebar("Navigation") ) : ?>
 				<?php wp_nav_menu( array('theme_location' => 'frank_primary_navigation', 'container' => false ) ); ?>	
 			<?php endif; ?> 
