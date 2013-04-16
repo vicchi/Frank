@@ -4,8 +4,13 @@
  */
 ?>
 <?php get_header(); ?>
+<<<<<<< HEAD:404.php
 <main id="content" class="fourohfour" role="main">
 	<div class="row">
+=======
+<div id="content" class="fullspread fourohfour">
+	<main id="content-primary" role="main">
+>>>>>>> refs/heads/local-customisation:frank/404.php
 		<header>
 			<h1>
 			  <?php _e('Page Not Found', 'frank_theme'); ?>
@@ -34,6 +39,11 @@
 					<?php get_search_form(); ?>
 				</div>
 		</div>
+<<<<<<< HEAD:404.php
 	</div>
 </main>
+=======
+	</main>
+</div>
+>>>>>>> refs/heads/local-customisation:frank/404.php
 <?php get_footer(); ?>

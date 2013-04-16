@@ -1,4 +1,264 @@
+<<<<<<< HEAD:admin/frank-theme-options-home.php
 <h3 class="type-title">
+=======
+<?php
+
+// CREATE THE SETTINGS TABS IN WP ADMIN
+if (!function_exists('frank_admin_tabs')) {
+function frank_admin_tabs($current = 'general') {
+
+	$tabs = array( 'general' => __('General Settings', 'frank_theme'),
+	                'home' => __('Home Page Settings', 'frank_theme'));
+
+	echo '<div id="icon-themes" class="icon32"><br></div>';
+	echo '<h2 class="nav-tab-wrapper">';
+
+	foreach($tabs as $tab => $name) {
+
+		$class = ($tab == $current) ? ' nav-tab-active' : '';
+
+        echo "<a class='nav-tab$class' href='?page=frank-settings&tab=$tab'>$name</a>";
+
+    }
+
+    echo '</h2>';
+
+}
+}
+
+// OPTIONS HELPER FUNCTIONS
+
+if(!function_exists('frank_add_warning')) {
+  $frank_warnings = array();
+  function frank_add_warning($warning_message) {
+    global $frank_warnings;
+    $frank_warnings[] = $warning_message;
+  }
+}
+
+if(!function_exists('frank_post_value_or_default')) {
+  function frank_post_value_or_default($val_name, $default) {
+
+    $val = isset($_POST[$val_name]) ? $_POST[$val_name] : $default;
+    switch (gettype($default)) {
+      case "boolean":
+        if (is_string($val)) {
+          return $val != "";
+        }
+        return (bool)$val; // boolval() only exists in PHP >= 5.5.0
+      case "integer":
+        return intval($val);
+      case "string":
+        return strval($val);
+      case "double":
+        return doubleval($val);
+      case "array":
+        return is_array($val) ? $val : $default;
+    }
+    // We should never reach this point
+    frank_add_warning("The type of option '" . $val_name . "' couldn't be determined.");
+    return $val;
+  }
+}
+
+if(!function_exists('frank_update_settings_button')) {
+  function frank_update_settings_button($updated) {
+		if ($updated) {
+    	echo '<h4 class="saved-success">';
+    	  echo '<img src="/wp-content/themes/frank/admin/images/success.png" />';
+    	  _e('Frank\'s Settings Have Been Updated.', 'frank_theme');
+    	echo '</h4>';
+
+    } else {
+
+    	echo '<h4 class="info">';
+    	  _e('Make Changes And Use The Update Settings Button To Save!', 'frank_theme');
+    	  echo ' &rarr;';
+    	echo '</h4>';
+    }
+  }
+}
+
+// BUILD THE CONTENT THAT DISPLAYS IN THEME SETTINGS
+if (!function_exists('frank_build_settings_page')) {
+function frank_build_settings_page() {
+	global $pagenow;
+
+	// SET FILE DIRECTORY
+	$file_dir = get_template_directory_uri();
+	
+	// SETUP NEEDED STYLES & SCRIPTS FOR OPTIONS PAGE
+	//wp_enqueue_script('jquery-ui-sortable' );
+	//wp_enqueue_script('frank-admin', $file_dir . '/admin/js/frank-utils.js', 'jquery', NULL, TRUE);
+	//wp_enqueue_style('frank-admin', $file_dir . '/admin/css/frank-options.css', NULL, NULL, NULL);
+
+	// SET DEFAULT DATA FOR FIRST RUN
+	$frank_defaults = array(
+		'header'						=> true,
+		'title'             => 'Section Title',
+		'caption'           => 'Section Caption',
+		'num_posts'         => 10
+	);
+
+	?>
+
+	<div class="wrap">
+
+		<h2>
+		  <?php _e('Frank Theme Settings', 'frank_theme'); ?>
+		</h2>
+
+		<?php if (isset($_GET['tab'])) { frank_admin_tabs($_GET['tab']); } else { frank_admin_tabs('general'); } ?>
+
+		<form method="post" action="">
+
+			<div id="settings-container"> <?php
+			wp_nonce_field( 'frank_update_general', 'frank_general_key' );
+			
+			if ($pagenow == 'themes.php' && $_GET['page'] == 'frank-settings') {
+
+				if (isset($_GET['tab'])) { $tab = $_GET['tab']; } else { $tab = 'general'; }
+
+				switch ($tab) {
+
+					// SETUP OPTIONS FOR GENERAL TAB
+					case 'general' : ?>
+
+					<h3 class="type-title"><?php _e('General Settings', 'frank_theme'); ?></h3>
+
+					<?php
+
+					$frank_updated = false;
+
+					// PULL EXISTING SECTIONS, IF PRESENT
+					$frank_general = get_option('_frank_options');
+
+					if (!empty($_POST) && wp_verify_nonce($_POST['frank_general_key'], 'frank_update_general')) {
+					  $frank_general['header'] = frank_post_value_or_default('frank-general-header', '');
+					  $frank_general['footer'] = frank_post_value_or_default('frank-general-footer', '');
+					  $frank_general['tweet_post_button'] = frank_post_value_or_default('frank-general-tweet-post-button', false);
+					  $frank_general['tweet_post_attribution'] = frank_post_value_or_default('frank-general-tweet-post-attribution', '');
+					  $frank_general['generator_disabled'] = frank_post_value_or_default('frank-generator-disabled', false);
+
+						update_option( '_frank_options', $frank_general );
+						$frank_updated = true;
+
+					}
+
+					// IF THERE'S NOTHING, SET DEFAULTS
+					if(empty($frank_general)) {
+
+						$frank_general = array(
+							'header'      					=> '',
+							'footer'            			=> '',
+							'tweet_post_button' 			=> false,
+							'tweet_post_attribution' 		=> '',
+							'generator_disabled'                    => false,
+						);
+
+					} ?>
+
+					<div class="button-container">
+
+						<input type="submit" name="submit"  class="save-settings" value="<?php _e('Update Settings', 'frank_theme'); ?>" />
+
+						<?php frank_update_settings_button($frank_updated); ?>
+
+					</div><!-- // BUTTON CONTAINER -->
+
+					<!-- CUSTOM HEADER CODE -->
+					<div id="first-option" class="option-container">
+						<label class="feature-title"><?php _e('Custom Header Code', 'frank_theme'); ?></label>
+						<div class="feature">
+							<textarea name="frank-general-header" class="textarea"><?php echo esc_html(stripslashes($frank_general['header'])); ?></textarea>
+						</div>
+						<div class="feature-desc">
+							<?php
+							  _e('This feature allows you to write or copy and paste your own code straight into the header. Many people use this feature to include their Google Analytics code, or other small bits of Javascript. Feel free to use this as you wish!', 'frank_theme');
+							?>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+
+
+					<!-- CUSTOM FOOTER CODE -->
+					<div class="option-container">
+						<label class="feature-title"><?php _e('Custom Footer Code', 'frank_theme'); ?></label>
+						<div class="feature">
+							<textarea name="frank-general-footer" class="textarea"><?php echo esc_html(stripslashes($frank_general['footer'])); ?></textarea>
+						</div>
+						<div class="feature-desc">
+						<?php
+							_e('This feature allows you to write or copy and paste your own code directly to the footer. A lot of people use this feature to include external and internal Javascript files, for plugins and things of the sort. Use it as you wish!', 'frank_theme');
+						?>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					<!-- TWEET THIS OPTION -->
+					<div class="option-container">
+						<label class="feature-title"><?php _e('Tweet This', 'frank_theme'); ?></label>
+						<div class="feature">
+							<input type="checkbox"
+								   name="frank-general-tweet-post-button"
+								   class="checkbox"
+								   value="tweet_post_button" 
+									<?php checked( $frank_general['tweet_post_button']); ?>
+								/>
+
+							<label for="frank-general-tweet-post-button">
+								<?php _e('Add a "Tweet This Post" Button to Post Templates.', 'frank_theme'); ?>
+							</label>
+						</div>
+						<div class="feature-desc">
+						  <?php
+							  _e('This feature gives you the option to integrate a little bit of social networking directly into your posts. By turning this feature on, we\'ll automatically create a "Tweet" Button people can use to share your content!', 'frank_theme');
+							?>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					<!-- TWEET THIS HANDLE -->
+					<div class="option-container optional-container" controlling-checkbox="frank-general-tweet-post-button">
+						<label class="feature-title"><?php _e('Twitter Handle', 'frank_theme'); ?></label>
+						<div class="feature">
+							<input type="text"
+								   name="frank-general-tweet-post-attribution"
+								   class="text"
+								   value="<?php echo esc_attr(stripslashes($frank_general['tweet_post_attribution'])); ?>" />
+						</div>
+						<div class="feature-desc">
+							<?php
+							  _e('By entering your handle once right here, you can easily reference this setting throughout the theme and change it later with ease, if needed. Refrain from using the \'@\' sign. An example handle: \'somerandomdude\'.', 'frank_theme');
+							?>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					<!-- Whether to include wp_generator or not -->
+					<div class="option-container">
+						<label class="feature-title"><?php _e('Remove WordPress Version number from head', 'frank_theme'); ?></label>
+						<div class="feature">
+							<input type="checkbox"
+							       name="frank-generator-disabled"
+							       class="checkbox"
+							       value="generator_disabled"
+							       <?php checked( $frank_general['generator_disabled'] ); ?>
+							/>
+						</div>
+						<div class="feature-desc">
+							<?php
+							      _e("Whether to include the version of WordPress used to generate the site in the head. This can be a security risk if you aren't running the most updated version", 'frank_theme')
+							?>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+
+					 <?php
+						
+					break;
+
+					case 'home' : ?>
+
+					<h3 class="type-title">
+>>>>>>> refs/heads/local-customisation:frank/admin/frank-theme-options.php
 					  <?php _e('Home Page Settings', 'frank_theme'); ?>
 					</h3>
 					<?php
