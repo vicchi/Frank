@@ -8,11 +8,26 @@ function frank_theme_setup() {
 
 if ( ! isset( $content_width ) ) $content_width = 980;
 
-define( 'HEADER_TEXTCOLOR', '3D302F' );
-define( 'HEADER_IMAGE', '%s/images/default_header.jpg' );
-define( 'HEADER_IMAGE_WIDTH', 980 );
-define( 'HEADER_IMAGE_HEIGHT', 225 );
+$custom_header_support = array(
+	'default-image' => '%s/images/default_header.jpg',
+	'width' => 980,
+	'height' => 225,
+	'default-text-color'     => '3D302F',
+	'flex-height'            => true,
+	'wp-head-callback'       => 'frank_header_style',
+	'admin-head-callback'    => 'frank_admin_header_style',
+	'admin-preview-callback' => 'frank_admin_header_image',
+);
+add_theme_support('custom-header', $custom_header_support);
 
+if (!function_exists('get_custom_header')) {
+	// Provide backwards compatibility with WP < v3.4 and allow child themes to override
+	// custom header settings
+	define('HEADER_TEXTCOLOR', $custom_header_support['default-text-color']);
+	define('HEADER_IMAGE', $custom_header_support['default-image']);
+	define('HEADER_IMAGE_WIDTH', $custom_header_support['width']);
+	define('HEADER_IMAGE_HEIGHT', $custom_header_support['height']);
+}
 
 if ( ! function_exists('frank_get_option') ) {
 	function frank_get_option( $key ) {
@@ -76,15 +91,6 @@ add_action( 'after_setup_theme', 'frank_register_menu' );
 
 add_editor_style();
 
-$custom_header_support = array(
-	'default-text-color'     => '3D302F',
-	'flex-height'            => true,
-	'wp-head-callback'       => 'frank_header_style',
-	'admin-head-callback'    => 'frank_admin_header_style',
-	'admin-preview-callback' => 'frank_admin_header_image',
-);
-
-add_theme_support( 'custom-header', $custom_header_support );
 add_theme_support( 'automatic-feed-links' );
 
 add_theme_support( 'post-thumbnails' );
