@@ -9,14 +9,13 @@
 					$frank_general = get_option('_frank_options');
 
 					if (!empty($_POST) && wp_verify_nonce($_POST['frank_general_key'], 'frank_update_general')) {
-					  $frank_general['header'] = frank_post_value_or_default('frank-general-header', '');
-					  $frank_general['footer'] = frank_post_value_or_default('frank-general-footer', '');
-					  $frank_general['tweet_post_button'] = frank_post_value_or_default('frank-general-tweet-post-button', false);
-					  $frank_general['tweet_post_attribution'] = frank_post_value_or_default('frank-general-tweet-post-attribution', '');
-
+						$frank_general['header'] = frank_post_value_or_default('frank-general-header', '');
+						$frank_general['footer'] = frank_post_value_or_default('frank-general-footer', '');
+						$frank_general['tweet_post_button'] = frank_post_value_or_default('frank-general-tweet-post-button', false);
+						$frank_general['tweet_post_attribution'] = frank_post_value_or_default('frank-general-tweet-post-attribution', '');
+						$frank_general['featured_image_button'] = frank_post_value_or_default('frank-general-featured-image-button', false);
 						update_option( '_frank_options', $frank_general );
 						$frank_updated = true;
-
 					}
 
 					// IF THERE'S NOTHING, SET DEFAULTS
@@ -27,6 +26,7 @@
 							'footer'            			=> '',
 							'tweet_post_button' 			=> false,
 							'tweet_post_attribution' 		=> '',
+							'featured_image_button'			=> false
 						);
 
 					} ?>
@@ -104,4 +104,20 @@
 							?>
 						</div>
 						<div style="clear:both;"></div>
-					</div>	
+					</div>
+					<!-- USE FEATURED IMAGE -->
+					<div class="option-container">
+						<label class="feature-title"><?php _e('Featured Image', 'frank_theme');?></label>
+						<div class="feature">
+							<input type="checkbox" name="frank-general-featured-image-button" class="checkbox" value="featured_image_button" <?php checked(frank_get_option('featured_image_button')); ?> />
+							<label for="frank-general-featured-image-button">
+								<?php _e('Add a Featured Image to your posts', 'frank_theme'); ?>
+							</label>
+						</div>
+						<div class="feature-desc">
+							<?php
+								_e('If your posts have a Featured Image set, turning this feature on will display that image before the post content', 'frank_theme');
+							?>
+						</div>
+						<div style="clear: both;"></div>
+					</div>

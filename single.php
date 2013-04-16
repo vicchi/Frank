@@ -17,7 +17,11 @@
 				<?php endif; ?>
 				<div id='content-main' class='row'>
 					<section class='post-content clearfix'>
-						<?php the_post_thumbnail( 'default-thumbnail' ); ?>
+						<?php
+						if (frank_featured_image_button()) {
+							the_post_thumbnail( 'default-thumbnail' );
+						}
+						?>
 						<?php the_content(); ?>
 						<?php wp_link_pages('before=<div class="pagination small"><span class="title">Pages:</span>&after=</div>'); ?>
 					</section>

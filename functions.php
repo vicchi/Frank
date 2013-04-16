@@ -385,6 +385,10 @@ function frank_tweet_post_attribution() {
 	return frank_get_option( 'tweet_post_attribution' );
 }
 
+function frank_featured_image_button() {
+	if (frank_get_option('featured_image_button')) return true;
+}
+
 if ( ! function_exists( 'frank_comment' ) ) {
 	function frank_comment( $comment, $args, $depth ) {
 

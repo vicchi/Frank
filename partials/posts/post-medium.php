@@ -3,8 +3,12 @@
 		<h1 class="truncate"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>
 	</header>
 	<section>
-		<?php the_post_thumbnail( 'medium-thumbnail' ); ?>
-		<?php the_content('Read On&hellip;'); ?>
+		<?php
+		if (frank_featured_image_button()) {
+			the_post_thumbnail('medium-thumbnail');
+		}
+		the_content('Read On&hellip;');
+		?>
 	</section>
 	<footer>
 		<?php get_template_part('partials/post-metadata', 'horizontal'); ?>
