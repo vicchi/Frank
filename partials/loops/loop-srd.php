@@ -16,6 +16,7 @@ $queryObject = new WP_Query( $args );
 <?php if ( !empty( $sticky[0] ) ) : ?>
 	<div class='row post-group oneup large'>
 		<?php
+		$queryObject->the_post();
 		get_template_part('partials/posts/post', 'oneuplarge');
 		wp_reset_postdata();
 		?>
