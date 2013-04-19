@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* 
 Theme Name:     Frank
 Theme URI:      http://somerandomdude.com/work/frank 
@@ -1741,6 +1742,7 @@ button, .button, input[type=submit] {
 .comment-content {
   width: 73.9%;
   font-family: Georgia, serif;
+  word-wrap: break-word;
 }
 .comment-content blockquote, .comment-content blockquote p {
   font-size: 13px;

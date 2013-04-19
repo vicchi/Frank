@@ -26,6 +26,7 @@
 	width: $nine-columns;
 	@extend .push-three;
 	font-family: $typeface-primary;
+	word-wrap: break-word;
 	blockquote, blockquote p { 
 		font-size: $font-size-small; 
 	}
