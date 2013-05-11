@@ -1,13 +1,14 @@
+@charset "UTF-8";
 /* 
 Theme Name:     Frank
 Theme URI:      http://somerandomdude.com/work/frank 
 Description:    The next step of the Franklin Street theme.  
 Author:         P.J. Onori 
 Author URI:     http://somerandomdude.com/hello/  
-Version:        0.9.2
-License:        GPL 3.0
-License URI:    http://www.gnu.org/copyleft/gpl.html 
-Tags:           brown, red, white, two-columns, fixed-width, sticky-post, custom-menu
+Version:        0.9.1.1
+License:				GPL 3.0
+License URI:		http://www.gnu.org/copyleft/gpl.html 
+Tags: 					brown, red, white, two-columns, fixed-width, sticky-post, custom-menu
 */
 .metadata, .metadata li, .wp-caption img, .menu-item, .sub-menu, #comments .comment {
   margin: 0;
@@ -59,7 +60,8 @@ hgroup,
 main,
 nav,
 section,
-summary {
+summary,
+main {
   display: block;
 }
 
@@ -258,7 +260,7 @@ figure {
  * Define consistent border, margin, and padding.
  */
 fieldset {
-  border: 1px solid #c0c0c0;
+  border: 1px solid silver;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -390,12 +392,12 @@ table {
 
 /* Artfully Masterminded by ZURB */
 /* --------------------------------------------------
-  :: Grid
-  
-  This is the mobile-friendly, responsive grid that
-  lets Foundation work much of its magic.
-  
-  -------------------------------------------------- */
+	:: Grid
+	
+	This is the mobile-friendly, responsive grid that
+	lets Foundation work much of its magic.
+	
+	-------------------------------------------------- */
 .container {
   padding: 0 20px;
 }
@@ -656,19 +658,19 @@ img, video {
   zoom: 1;
 }
 
-/*  --------------------------------------------------
-  :: Block grids
-  
-  These are 2-up, 3-up, 4-up and 5-up ULs, suited
-  for repeating blocks of content. Add 'mobile' to
-  them to switch them just like the layout grid
-  (one item per line) on phones
-  
-  For IE7/8 compatibility block-grid items need to be
-  the same height. You can optionally uncomment the
-  lines below to support arbitrary height, but know
-  that IE7/8 do not support :nth-child.
-  -------------------------------------------------- */
+/*	--------------------------------------------------
+	:: Block grids
+	
+	These are 2-up, 3-up, 4-up and 5-up ULs, suited
+	for repeating blocks of content. Add 'mobile' to
+	them to switch them just like the layout grid
+	(one item per line) on phones
+	
+	For IE7/8 compatibility block-grid items need to be
+	the same height. You can optionally uncomment the
+	lines below to support arbitrary height, but know
+	that IE7/8 do not support :nth-child.
+	-------------------------------------------------- */
 .block-grid {
   display: block;
   overflow: hidden;
@@ -689,7 +691,7 @@ img, video {
   width: 46%;
 }
 
-/*  .block-grid.two-up>li:nth-child(2n+1) {clear: left;} */
+/* 	.block-grid.two-up>li:nth-child(2n+1) {clear: left;} */
 .block-grid.three-up {
   margin-left: -2%;
 }
@@ -699,7 +701,7 @@ img, video {
   width: 31.3%;
 }
 
-/*  .block-grid.three-up>li:nth-child(3n+1) {clear: left;} */
+/* 	.block-grid.three-up>li:nth-child(3n+1) {clear: left;} */
 .block-grid.four-up {
   margin-left: -2%;
 }
@@ -709,7 +711,7 @@ img, video {
   width: 23%;
 }
 
-/*  .block-grid.four-up>li:nth-child(4n+1) {clear: left;} */
+/* 	.block-grid.four-up>li:nth-child(4n+1) {clear: left;} */
 .block-grid.five-up {
   margin-left: -1.5%;
 }
@@ -719,10 +721,10 @@ img, video {
   width: 18.5%;
 }
 
-/*  .block-grid.five-up>li:nth-child(5n+1) {clear: left;} */
+/* 	.block-grid.five-up>li:nth-child(5n+1) {clear: left;} */
 /* --------------------------------------------------
-  :: Grid
-  -------------------------------------------------- */
+	:: Grid
+	-------------------------------------------------- */
 /* Mobile */
 @media only screen and (max-width: 767px) {
   body, .container, .row {
@@ -785,8 +787,8 @@ img, video {
   }
 }
 /* --------------------------------------------------
-  :: Block Grids
-  -------------------------------------------------- */
+	:: Block Grids
+	-------------------------------------------------- */
 @media only screen and (max-width: 767px) {
   .block-grid.mobile {
     margin-left: 0;
@@ -1740,6 +1742,7 @@ button, .button, input[type=submit] {
 .comment-content {
   width: 73.9%;
   font-family: Georgia, serif;
+  word-wrap: break-word;
 }
 .comment-content blockquote, .comment-content blockquote p {
   font-size: 13px;

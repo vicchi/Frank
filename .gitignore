@@ -2,6 +2,3 @@
 .scssc
 .sass-cache
 node_modules
-vendor
-composer.phar
-composer.lock

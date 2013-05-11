@@ -21,6 +21,12 @@
 			/* TODO: Clean this up */
 			switch($frank_section_type) {
 				case 'srd_loop':
+					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+					$wp_query = new WP_Query(array(
+						'paged' => $paged,
+						'posts_per_page' => $frank_section_num_posts,
+						'cat' => implode(',', array_filter($frank_section_categories))
+					));
 					get_template_part('partials/loops/loop', 'srd');
 					break;
 				case 'one_up_reg':

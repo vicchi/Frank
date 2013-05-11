@@ -4,8 +4,8 @@
  */
 ?>
 <?php get_header(); ?>
-<main id="content" class="fourohfour" role="main">
-	<div class="row">
+<div id="content" class="fullspread fourohfour">
+	<main id="content-primary" role="main">
 		<header>
 			<h1>
 			  <?php _e('Page Not Found', 'frank_theme'); ?>
@@ -33,7 +33,8 @@
 					</p>
 					<?php get_search_form(); ?>
 				</div>
+			</div>
 		</div>
-	</div>
-</main>
+	</main>
+</div>
 <?php get_footer(); ?>

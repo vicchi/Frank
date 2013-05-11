@@ -6,8 +6,12 @@
 	</header>
 	<div class="row">
 		<section class="post-content">
-			<?php the_post_thumbnail( 'medium-thumbnail' ); ?>
-			<?php the_content('Read On&hellip;'); ?>
+			<?php
+			if (frank_featured_image_button()) {
+				the_post_thumbnail('medium-thumbnail');
+			}
+			the_content('Read On&hellip;');
+			?>
 		</section>
 		<footer class="post-info">
 			<?php get_template_part('partials/post-metadata'); ?>

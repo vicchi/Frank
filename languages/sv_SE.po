@@ -320,20 +320,6 @@ msgstr "Är du säker på att du vill radera den här sektionen?"
 msgid "(Drag & Drop Content Sections to Re-Order)"
 msgstr "(Dra och släpp sektioner för att ändra ordning)"
 
-#: functions.php:354
-msgid "Your comment is awaiting moderation"
-msgstr "Din kommentar väntar på att bli godkänd av en administratör."
-
-#: functions.php:368
-msgctxt "comment_author_attribution"
-msgid "By"
-msgstr "Av"
-
-#: functions.php:373
-msgctxt "edit-comment"
-msgid "edit"
-msgstr "redigera"
-
 #: partials/loops/loop-fourup.php:10
 #: partials/loops/loop-oneup.php:10
 #: partials/loops/loop-oneuplarge.php:10

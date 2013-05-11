@@ -9,10 +9,10 @@
 					$frank_performance = get_option('_frank_options');
 
 					if (!empty($_POST) && wp_verify_nonce($_POST['frank_performance_key'], 'frank_update_performance')) {
-						$frank_performance['remove_script_version'] = frank_post_value_or_default('frank-performance-remove-script-version', false);
-						$frank_performance['remove_style_version'] = frank_post_value_or_default('frank-performance-remove-style-version', false);
-						$frank_performance['remove_wordpress_version'] = frank_post_value_or_default('frank-performance-remove-wordpress-version', false);
-						
+					  $frank_performance['remove_script_version'] = frank_post_value_or_default('frank-performance-remove-script-version', false);
+					  $frank_performance['remove_style_version'] = frank_post_value_or_default('frank-performance-remove-style-version', false);
+					  $frank_performance['remove_wordpress_version'] = frank_post_value_or_default('frank-performance-remove-wordpress-version', false);
+					  
 
 						update_option( '_frank_options', $frank_performance );
 						$frank_updated = true;
@@ -23,8 +23,8 @@
 					if(empty($frank_performance)) {
 
 						$frank_performance = array(
-							'remove_script_version'               => false,
-							'remove_style_version'                => false,
+							'remove_script_version'      					=> false,
+							'remove_style_version'      					=> false,
 							'remove_wordpress_version'            => false
 						);
 
@@ -43,9 +43,9 @@
 					<div id="first-option" class="option-container">
 						<div class="feature">
 							<input type="checkbox"
-									 name="frank-performance-remove-wordpress-version"
-									 class="checkbox"
-									 value="remove_wordpress_version" 
+								   name="frank-performance-remove-wordpress-version"
+								   class="checkbox"
+								   value="remove_wordpress_version" 
 									<?php checked( frank_get_option('remove_wordpress_version')); ?>
 								/>
 
@@ -54,8 +54,8 @@
 							</label>
 						</div>
 						<div class="feature-desc">
-							<?php
-								_e('There are potential security risks associated with exposing your version of WordPress. Removing this meta tag will also shave a few bytes off of the generated HTML.', 'frank_theme');
+						  <?php
+							  _e('There are potential security risks associated with exposing your version of WordPress. Removing this meta tag will also shave a few bytes off of the generated HTML.', 'frank_theme');
 							?>
 						</div>
 						<div style="clear:both;"></div>
@@ -64,9 +64,9 @@
 					<div class="option-container">
 						<div class="feature">
 							<input type="checkbox"
-									 name="frank-performance-remove-script-version"
-									 class="checkbox"
-									 value="remove_script_version" 
+								   name="frank-performance-remove-script-version"
+								   class="checkbox"
+								   value="remove_script_version" 
 									<?php checked( frank_get_option('remove_script_version')); ?>
 								/>
 
@@ -76,7 +76,7 @@
 						</div>
 						<div class="feature-desc">
 							<?php
-								_e('The version URL parameter can prevent files from caching in certain browsers. If you want more reliable caching of your scripts, turn this feature on.', 'frank_theme');
+							  _e('The version URL parameter can prevent files from caching in certain browsers. If you want more reliable caching of your scripts, turn this feature on.', 'frank_theme');
 							?>
 						</div>
 						<div style="clear:both;"></div>
@@ -85,9 +85,9 @@
 					<div class="option-container">
 						<div class="feature">
 							<input type="checkbox"
-									 name="frank-performance-remove-style-version"
-									 class="checkbox"
-									 value="remove_style_version" 
+								   name="frank-performance-remove-style-version"
+								   class="checkbox"
+								   value="remove_style_version" 
 									<?php checked( frank_get_option('remove_style_version')); ?>
 								/>
 
@@ -97,7 +97,7 @@
 						</div>
 						<div class="feature-desc">
 							<?php
-								_e('The version URL parameter can prevent files from caching in certain browsers. If you want more reliable caching of your stylesheets, turn this feature on.', 'frank_theme');
+							  _e('The version URL parameter can prevent files from caching in certain browsers. If you want more reliable caching of your stylesheets, turn this feature on.', 'frank_theme');
 							?>
 						</div>
 						<div style="clear:both;"></div>
